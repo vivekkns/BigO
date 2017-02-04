@@ -7,3 +7,6 @@ https://interactivepython.org/runestone/static/pythonds/index.html
   
 2. Meta classes
   * [What is a meta class?](http://stackoverflow.com/questions/100003/what-is-a-metaclass-in-python)
+
+3. Asychronous programming
+  * [Introduction to twisted](http://krondo.com/an-introduction-to-asynchronous-programming-and-twisted/)
