@@ -10,3 +10,4 @@ https://interactivepython.org/runestone/static/pythonds/index.html
 
 3. Asychronous programming
   * [Introduction to twisted](http://krondo.com/an-introduction-to-asynchronous-programming-and-twisted/)
+  * [purpose of zope](http://stackoverflow.com/questions/2521189/purpose-of-zope-interfaces(
