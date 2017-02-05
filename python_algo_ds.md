@@ -5,8 +5,9 @@ https://interactivepython.org/runestone/static/pythonds/index.html
 1. Decorator
   * [Intro: decorator in 12 steps - fn decorators] (http://simeonfranklin.com/blog/2012/jul/1/python-decorators-in-12-steps/)
   
-2. Meta classes
+2. Classes
   * [What is a meta class?](http://stackoverflow.com/questions/100003/what-is-a-metaclass-in-python)
+  * [Video - Basics OOPS](https://www.youtube.com/watch?v=ZDa-Z5JzLYM&list=PL-osiE80TeTsqhIuOqKhwlXsIBIdSeYtc)
 
 3. Asychronous programming
   * [Introduction to twisted](http://krondo.com/an-introduction-to-asynchronous-programming-and-twisted/),([Abt generators](http://krondo.com/just-another-way-to-spell-callback/))
