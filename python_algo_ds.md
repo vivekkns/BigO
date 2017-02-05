@@ -12,4 +12,6 @@ https://interactivepython.org/runestone/static/pythonds/index.html
   * [Introduction to twisted](http://krondo.com/an-introduction-to-asynchronous-programming-and-twisted/),([Abt generators](http://krondo.com/just-another-way-to-spell-callback/))
   * [purpose of zope](http://stackoverflow.com/questions/2521189/purpose-of-zope-interfaces)
 
-4. [List, Set, Dictionary comprehension](https://www.smallsurething.com/list-dict-and-set-comprehensions-by-example/)
+4. [Iterators vs generator](http://nvie.com/posts/iterators-vs-generators/)
+
+5. [List, Set, Dictionary comprehension](https://www.smallsurething.com/list-dict-and-set-comprehensions-by-example/)
