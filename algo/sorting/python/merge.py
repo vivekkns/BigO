@@ -31,7 +31,7 @@ def merge(A, L, R):
 def merge_sort(A):
     nA = len(A)
 
-    if nA == 1:
+    if nA <= 1:
         return
 
     mid = nA/2
