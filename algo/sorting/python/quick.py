@@ -27,7 +27,7 @@ def quicksort(A, left, right, par_func):
     quicksort(A, pi+1, right, par_func)
 
 
-def run_alog(A):
+def run_algo(A):
     B = A[:]
     startTime = time.time()
     quicksort(A, 0, len(A)-1, partition)
@@ -43,7 +43,7 @@ def run_alog(A):
 
 def example_random_array():
     A = random.sample(xrange(1, 1000000), 10000)
-    run_alog(A)
+    run_algo(A)
 
     # Normal 8.73901391029
     # Randomized 0.0367560386658
@@ -53,7 +53,7 @@ def example_sorted_aary():
     n = 10000
     sys.setrecursionlimit(n+100)
     A = range(0, n)
-    run_alog(A)
+    run_algo(A)
 
 if __name__ == '__main__':
     example_random_array()
