@@ -1,6 +1,7 @@
 import sys
 from stack.python import stack
 
+
 class Node:
     def __init__(self, data):
         self.left = None
@@ -65,6 +66,17 @@ def find_max(root):
         m = r
     return m
 
+
+def is_element_exist(root, data):
+    if root is None:
+        return False
+
+    if root.data == data:
+        return True
+
+    return is_element_exist(root.left, data) or \
+        is_element_exist(root.right, data)
+
 if __name__ == '__main__':
     btree = get_bintree()
     print('\nIn order')
@@ -75,3 +87,6 @@ if __name__ == '__main__':
     post_order(btree)
 
     print '\nmax= ', find_max(btree)
+
+    print '\n is_element_exist(root, 0)= %s' % str(is_element_exist(btree, 0))
+    print '\n is_element_exist(root, -90)= %s' % str(is_element_exist(btree, -90))
