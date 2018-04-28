@@ -76,6 +76,51 @@ class queue:
         print self.A, 'front=', self.front, 'rear=', self.rear
 
 
+#
+# queue using linked list
+#
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.Next = None
+
+
+class queue_list:
+    def __init__(self):
+        self.front = None
+        self.rear = None
+
+    def isempty(self):
+        if self.front is None:
+            return True
+        return False
+
+    def enqueue(self, data):
+        n = Node(data)
+        if self.rear is None:
+            self.rear = n
+            self.front = self.rear
+        else:
+            self.rear.Next = n
+            self.rear = n
+
+    def dequeue(self):
+        if self.isempty():
+            raise Exception('Underflow')
+        n = self.front
+        self.front = self.front.Next
+        if self.front is None:
+            self.front = self.rear = None
+        return n.data
+
+    def __call__(self, *args, **kwargs):
+        temp = self.front
+
+        while temp is not None:
+            print temp.data
+            temp = temp.Next
+
 if __name__ == '__main__':
 
     q = queue(5)
@@ -85,5 +130,10 @@ if __name__ == '__main__':
     q.enqueue(-2)
     q()
     print q.dequeue(), q.dequeue(), q.dequeue()
-    q()
 
+    q = queue_list()
+    q.enqueue(2)
+    q.enqueue(20)
+    q.enqueue(-2)
+    q()
+    print q.dequeue(), q.dequeue(), q.dequeue()
