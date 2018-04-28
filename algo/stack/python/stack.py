@@ -1,4 +1,4 @@
-
+import sys
 #
 # Stack
 #
@@ -44,7 +44,52 @@ class Stack:
     def __call__(self, *args, **kwargs):
         print self.A[:self.top+1]
 
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.right = None
+
+#
+# Stack using linked list
+#
+
+
+class Stack_List:
+    def __init__(self):
+        self.head = None
+
+    def isempty(self):
+        return self.head is None
+
+    def push(self, data):
+        n = Node(data)
+        if self.head is None:
+            self.head = n
+        else:
+            n.right = self.head
+            self.head = n
+
+    def pop(self):
+        if self.isempty():
+            raise Exception('Underflow')
+
+        n = self.head
+        self.head = self.head.right
+
+        return n.data
+
+    def __call__(self, *args, **kwargs):
+        n = self.head
+
+        while n is not None:
+            sys.stdout.write(str(n.data) + ' -> ')
+            n = n.right
+        print
+
 if __name__ == '__main__':
+
+    print('Stack using array')
     s = Stack(4)
     s.push(2)
     s.push(22)
@@ -53,3 +98,14 @@ if __name__ == '__main__':
     s()
     print 's.pop()=', s.pop()
     s()
+
+    print('\n\nStack using linked list')
+
+    sl = Stack_List()
+    sl.push(2)
+    sl.push(22)
+    sl.push(-15)
+    sl.push(43)
+    sl()
+    print 'sl.pop()=', sl.pop()
+    sl()
