@@ -1,5 +1,6 @@
 import sys
-from stack.python import stack
+from stack.python.stack import Stack
+from queue.python.queue import Queue_list as Queue
 
 
 class Node:
@@ -7,6 +8,10 @@ class Node:
         self.left = None
         self.right = None
         self.data = data
+
+#
+#   building tree for experimenting
+#
 
 
 def get_bintree():
@@ -48,9 +53,27 @@ def post_order(root):
     sys.stdout.write('%d, ' % root.data)
 
 
+def level_order(root):
+    vals = []
+    q = Queue()
+    if root is None:
+        return
+    q.enqueue(root)
+
+    while not q.isempty():
+        ele = q.dequeue()
+        vals.append(ele.data)
+        if ele.left is not None:
+            q.enqueue(ele.left)
+        if ele.right is not None:
+            q.enqueue(ele.right)
+
+    return vals
+
 #
 # Finding maximum element in the binary tree
 #
+
 
 def find_max(root):
     if root is None:
@@ -90,3 +113,5 @@ if __name__ == '__main__':
 
     print '\n is_element_exist(root, 0)= %s' % str(is_element_exist(btree, 0))
     print '\n is_element_exist(root, -90)= %s' % str(is_element_exist(btree, -90))
+
+    print ' \n level order = %s' % str(level_order(btree))

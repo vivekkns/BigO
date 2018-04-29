@@ -34,7 +34,7 @@
 # queue using fixed size array
 #
 
-class queue:
+class Queue:
     def __init__(self, size):
         self.size = size
         self.A = [0]*size
@@ -86,7 +86,7 @@ class Node:
         self.Next = None
 
 
-class queue_list:
+class Queue_list:
     def __init__(self):
         self.front = None
         self.rear = None
@@ -123,7 +123,7 @@ class queue_list:
 
 if __name__ == '__main__':
 
-    q = queue(5)
+    q = Queue(5)
 
     q.enqueue(2)
     q.enqueue(20)
@@ -131,7 +131,7 @@ if __name__ == '__main__':
     q()
     print q.dequeue(), q.dequeue(), q.dequeue()
 
-    q = queue_list()
+    q = Queue_list()
     q.enqueue(2)
     q.enqueue(20)
     q.enqueue(-2)
