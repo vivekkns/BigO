@@ -25,6 +25,9 @@ def get_bintree():
     root.right.right = Node(15)
 
     root.left.left.left = Node(-6)
+    root.left.left.right = Node(-60)
+
+    root.left.left.left.left = Node(19)
 
     return root
 
@@ -84,10 +87,17 @@ def find_max(root):
 
     m = root.data
     if l is not None and l > m:
-        m =l
+        m = l
     if r is not None and r > m:
         m = r
     return m
+
+
+def size_of_tree(root):
+    if root is None:
+        return 0
+    else:
+        return size_of_tree(root.left) + 1 + size_of_tree(root.right)
 
 
 def is_element_exist(root, data):
@@ -99,6 +109,70 @@ def is_element_exist(root, data):
 
     return is_element_exist(root.left, data) or \
         is_element_exist(root.right, data)
+
+
+def height_of_tree(root):
+    if root is None:
+        return 0
+    return 1 + max(height_of_tree(root.left), height_of_tree(root.right))
+
+
+def num_of_leaves(root):
+    if root is None:
+        return 0
+
+    if root.left is None and root.right is None:
+        return 1
+    else:
+        return num_of_leaves(root.left) + num_of_leaves(root.right)
+
+
+#
+# A set of all nodes with both left and right children are called full nodes
+#
+
+def num_of_full_nodes(root):
+    if root is None:
+        return 0
+
+    if root.left is not None and root.right is not None:
+        return 1 + num_of_full_nodes(root.left) + num_of_full_nodes(root.right)
+    elif root.left is not None:
+        return num_of_full_nodes(root.left)
+    elif root.right is not None:
+        return num_of_full_nodes(root.right)
+    else:
+        return 0
+
+
+#
+# Num of half nodes = nodes with only one children
+#
+
+def num_half_nodes(root):
+
+    if root is None:
+        return 0
+
+    if root.left and root.right:
+        return num_half_nodes(root.left) + num_half_nodes(root.right)
+    elif root.left:
+        return 1 + num_half_nodes(root.left)
+    elif root.right:
+        return 1 + num_half_nodes(root.right)
+    else:
+        return 0
+
+
+def are_structurally_identical(root1, root2):
+    if root1 is None and root2 is None:
+        return True
+    elif root1 is None or root2 is None:
+        return False
+    else:
+        return root1.data == root2.data and \
+               are_structurally_identical(root1.left, root2.left) and \
+               are_structurally_identical(root1.right, root2.right)
 
 if __name__ == '__main__':
     btree = get_bintree()
@@ -115,3 +189,9 @@ if __name__ == '__main__':
     print '\n is_element_exist(root, -90)= %s' % str(is_element_exist(btree, -90))
 
     print ' \n level order = %s' % str(level_order(btree))
+
+    print ' \n size_of_tree = %d' % size_of_tree(btree)
+    print ' \n height_of_tree = %d' % height_of_tree(btree)
+    print ' \n num_of_leaves = %d' % num_of_leaves(btree)
+    print ' \n num_of_full_nodes = %d' % num_of_full_nodes(btree)
+    print ' \n num_half_nodes = %d' % num_half_nodes(btree)
