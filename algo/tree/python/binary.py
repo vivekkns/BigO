@@ -63,9 +63,9 @@ def level_order(root):
     while not q.isempty():
         ele = q.dequeue()
         vals.append(ele.data)
-        if ele.left is not None:
+        if ele.left:
             q.enqueue(ele.left)
-        if ele.right is not None:
+        if ele.right:
             q.enqueue(ele.right)
 
     return vals
