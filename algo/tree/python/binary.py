@@ -13,6 +13,9 @@ class Node:
 #   building tree for experimenting
 #
 
+def print_tree(root):
+    pass
+
 
 def get_bintree():
     root = Node(10)
@@ -174,6 +177,21 @@ def are_structurally_identical(root1, root2):
                are_structurally_identical(root1.left, root2.left) and \
                are_structurally_identical(root1.right, root2.right)
 
+#
+#   https://www.geeksforgeeks.org/diameter-of-a-binary-tree/
+#
+
+
+def diameter(root):
+    if root is None:
+        return 0
+    hl = height_of_tree(root.left)
+    hr = height_of_tree(root.right)
+
+    dl = diameter(root.left)
+    dr = diameter(root.right)
+    return max(dl, dr, hl+hr+1)
+
 if __name__ == '__main__':
     btree = get_bintree()
     print('\nIn order')
@@ -195,3 +213,5 @@ if __name__ == '__main__':
     print ' \n num_of_leaves = %d' % num_of_leaves(btree)
     print ' \n num_of_full_nodes = %d' % num_of_full_nodes(btree)
     print ' \n num_half_nodes = %d' % num_half_nodes(btree)
+
+    print ' \n diameter = %d' % diameter(btree)
