@@ -192,6 +192,45 @@ def diameter(root):
     dr = diameter(root.right)
     return max(dl, dr, hl+hr+1)
 
+
+#
+# Finding level with maximum sum
+#
+
+def findlevelwithmaxsum(root):
+    if root is None:
+        return None
+
+    max_sum = -100000
+    cur_sum = 0
+
+    level = 0
+    max_level = 0
+
+    Q = Queue()
+    Q.enqueue(root)
+    Q.enqueue(None)
+
+    while not Q.isempty():
+        temp = Q.dequeue()
+        if temp is None:
+            if cur_sum > max_sum:
+                max_sum = cur_sum
+                max_level = level
+            cur_sum = 0
+            if not Q.isempty():
+                Q.enqueue(None)
+
+            level += 1
+        else:
+            cur_sum += temp.data
+            if temp.left:
+                Q.enqueue(temp.left)
+            if temp.right:
+                Q.enqueue(temp.right)
+
+    return max_level, max_sum
+
 if __name__ == '__main__':
     btree = get_bintree()
     print('\nIn order')
@@ -215,3 +254,6 @@ if __name__ == '__main__':
     print ' \n num_half_nodes = %d' % num_half_nodes(btree)
 
     print ' \n diameter = %d' % diameter(btree)
+
+    print ' \n findlevelwithmaxsum = %s' % str(findlevelwithmaxsum(btree))
+
