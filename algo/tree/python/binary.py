@@ -1,3 +1,4 @@
+from __future__ import print_function
 import sys
 from stack.python.stack import Stack
 from queue.python.queue import Queue_list as Queue
@@ -75,6 +76,22 @@ def level_order(root):
             q.enqueue(ele.right)
 
     return vals
+
+
+def print_level_order(root):
+    h = height_of_tree(root)
+    for l in xrange(1, h+1):
+        print_level(root, l)
+
+
+def print_level(root, level):
+    if root is None:
+        return
+    if level == 1:
+        print(root.data, end=',')
+    elif level > 1:
+        print_level(root.left, level-1)
+        print_level(root.right, level-1)
 
 #
 # Finding maximum element in the binary tree
@@ -233,27 +250,32 @@ def findlevelwithmaxsum(root):
 
 if __name__ == '__main__':
     btree = get_bintree()
-    print('\nIn order')
+    print('\n In order = ', end='')
     in_order(btree)
-    print('\nPre order')
+
+    print('\n Pre order = ', end='')
     pre_order(btree)
-    print('\nPost order')
+
+    print('\n Post order = ', end='')
     post_order(btree)
 
-    print '\nmax= ', find_max(btree)
+    print('\n Print Level order =', end='')
+    print_level_order(btree)
 
-    print '\n is_element_exist(root, 0)= %s' % str(is_element_exist(btree, 0))
-    print '\n is_element_exist(root, -90)= %s' % str(is_element_exist(btree, -90))
+    print(' \n Level order = %s' % str(level_order(btree)))
 
-    print ' \n level order = %s' % str(level_order(btree))
+    print('\n max= ', find_max(btree))
 
-    print ' \n size_of_tree = %d' % size_of_tree(btree)
-    print ' \n height_of_tree = %d' % height_of_tree(btree)
-    print ' \n num_of_leaves = %d' % num_of_leaves(btree)
-    print ' \n num_of_full_nodes = %d' % num_of_full_nodes(btree)
-    print ' \n num_half_nodes = %d' % num_half_nodes(btree)
+    print('\n is_element_exist(root, 0)= %s' % str(is_element_exist(btree, 0)))
+    print('\n is_element_exist(root, -90)= %s' % str(is_element_exist(btree, -90)))
 
-    print ' \n diameter = %d' % diameter(btree)
+    print(' \n size_of_tree = %d' % size_of_tree(btree))
+    print(' \n height_of_tree = %d' % height_of_tree(btree))
+    print(' \n num_of_leaves = %d' % num_of_leaves(btree))
+    print(' \n num_of_full_nodes = %d' % num_of_full_nodes(btree))
+    print(' \n num_half_nodes = %d' % num_half_nodes(btree))
 
-    print ' \n findlevelwithmaxsum = %s' % str(findlevelwithmaxsum(btree))
+    print(' \n diameter = %d' % diameter(btree))
+
+    print(' \n findlevelwithmaxsum = %s' % str(findlevelwithmaxsum(btree)))
 
