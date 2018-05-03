@@ -108,7 +108,7 @@ def print_level_order(root):
 
 def print_reverse_level_order(root):
     h = height_of_tree(root)
-    for l in xrange(h+1, 0, -1):
+    for l in xrange(h, 0, -1):
         print_level(root, l)
 
 
@@ -127,7 +127,7 @@ def print_reverse_level_order_stack_queue(root):
     # here python's list (L) is used for Queue and Stack
     # len(L) -> can be used to check the emptiness check
     # stack's push or Queue's enqueue is done L.append()
-    # satck's pop -> L.pop()
+    # stack's pop -> L.pop()
     # Queue's dequeue -> L.pop(0)
 
     if root is None:
@@ -154,6 +154,29 @@ def print_reverse_level_order_stack_queue(root):
 
     while len(S):
         print(S.pop().data, end=', ')
+
+
+def print_reverse_level_order_stack_recursion(root):
+    if root is None:
+        return
+
+    Q = list()
+
+    Q.append(root)
+    level_order_recursion(Q)
+
+
+def level_order_recursion(Q):
+    while len(Q):
+        root = Q.pop(0)
+        if root.right:
+            Q.append(root.right)
+
+        if root.left:
+            Q.append(root.left)
+
+        level_order_recursion(Q)
+        print(root.data, end=', ')
 
 #
 # Finding maximum element in the binary tree
@@ -336,6 +359,9 @@ if __name__ == '__main__':
 
     print('\n print_reverse_level_order_stack_queue = ', end='')
     print_reverse_level_order_stack_queue(btree)
+
+    print('\n print_reverse_level_order_stack_recursion = ', end='')
+    print_reverse_level_order_stack_recursion(btree)
 
     print('\n max in tree = ', find_max(btree))
 
