@@ -31,7 +31,7 @@ def get_bintree():
     root.right.right = Node(15)
 
     root.left.left.left = Node(-6)
-    root.left.left.right = Node(-60)
+    root.left.right.left = Node(-60)
 
     root.left.left.left.left = Node(19)
 
@@ -333,6 +333,32 @@ def findlevelwithmaxsum(root):
 
     return max_level, max_sum
 
+#
+# Given a binary tree, print out all of its root-too-leaf paths
+#
+
+
+def print_paths(root, path=None, pathlen=0):
+    if path is None:
+        path = []
+
+    if root is None:
+        return
+
+    if len(path) > pathlen:
+        path[pathlen] = root.data
+    else:
+        path.insert(pathlen, root.data)
+
+    pathlen += 1
+
+    if root.left is None and root.right is None:
+        print([d for d in path[:pathlen]])
+    else:
+        print_paths(root.left, path, pathlen)
+        print_paths(root.right, path, pathlen)
+
+
 if __name__ == '__main__':
     btree = get_bintree()
 
@@ -377,4 +403,7 @@ if __name__ == '__main__':
     print(' \n diameter = %d' % diameter(btree))
 
     print(' \n findlevelwithmaxsum = %s' % str(findlevelwithmaxsum(btree)))
+
+    print('All the paths')
+    print_paths(btree)
 
