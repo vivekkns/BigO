@@ -4,7 +4,7 @@ from __future__ import print_function
 # Finding missing and duplicate elements in an array
 #
 # You are given a read only array of n integers from 1 to n.
-# Each integer appears exactly once except A which appears twice and B which is missing.
+# Each integer appears exactly once except D which appears twice and M which is missing.
 
 #
 # method-1
