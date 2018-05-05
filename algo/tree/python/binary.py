@@ -15,9 +15,19 @@ class Node:
 #
 
 
-def print_tree(root):
-    h = height_of_tree(root)
-    pass
+def print_tree():
+    btree = """
+                10
+            /      \\
+           0        -3
+        /  \       /   \\
+       2    5     11   15
+     /     /
+    -6    -60
+    /
+   19
+"""
+    print(btree)
 
 
 def get_bintree():
@@ -358,8 +368,41 @@ def print_paths(root, path=None, pathlen=0):
         print_paths(root.left, path, pathlen)
         print_paths(root.right, path, pathlen)
 
+#
+# Algorithm for checking the existence of path with given sum
+#
+
+
+def existpathsum(root, rsum):
+    if root is None:
+        return False
+
+    is_leaf = root.left is None and \
+              root.right is None
+
+    rsum -= root.data
+    # reached leaf and rsum is
+    if is_leaf and rsum == 0:
+        return True
+    else:
+        return existpathsum(root.left, rsum) or \
+               existpathsum(root.right, rsum)
+
+
+#
+# The following problem can also be solved using
+# Level order traversal using Queue without recursion
+#
+def sum_all_elements(root):
+    if root is None:
+        return 0
+    else:
+        return root.data + \
+               sum_all_elements(root.left) + \
+               sum_all_elements(root.right)
 
 if __name__ == '__main__':
+    print_tree()
     btree = get_bintree()
 
     print('\n In order = ', end='')
@@ -406,4 +449,10 @@ if __name__ == '__main__':
 
     print('All the paths')
     print_paths(btree)
+
+    print('Existpathsum(22)? = ', existpathsum(btree, 22))
+    print('Existpathsum(11)? = ', existpathsum(btree, 11))
+
+    print('sum_all_elements = ', sum_all_elements(btree))
+
 
