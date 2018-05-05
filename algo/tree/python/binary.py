@@ -479,6 +479,39 @@ def lca(root, node1, node2):
         return right
 
 
+def path_of_node(root, node, path=None, pathlen=0):
+    if root is None:
+        return
+    if path is None:
+        path = []
+
+    if len(path) > pathlen:
+        path[pathlen] = root
+    else:
+        path.insert(pathlen, root)
+
+    pathlen += 1
+    if root is node:
+        return path[:pathlen]
+    lp = path_of_node(root.left, node, path, pathlen)
+
+    if lp is not None:
+        return lp
+
+    rp = path_of_node(root.right, node, path, pathlen)
+    if rp is not None:
+        return rp
+
+
+def first_diff_element(L1, L2):
+
+    k1 = k2 = 0
+    while L1[k1] == L2[k2]:
+        k1 += 1
+        k2 += 1
+
+    return L1[k1-1]
+
 if __name__ == '__main__':
     print_tree()
     btree = get_bintree()
@@ -562,6 +595,18 @@ if __name__ == '__main__':
     node1 = btree.left.left.left.left   # 19
     node2 = btree.left.right.left       # -60
 
+    print('------------------------------')
+    print('            LCA              ')
+    print('------------------------------')
     print('lca of node (%d) and (%d) is : (%d)' % (node1.data, node2.data,
           lca(btree, node1, node2).data))
 
+    p_node1 = path_of_node(btree, node1)
+    print('path of Node(%d) is %s' % (node1.data,
+        str([k.data for k in p_node1])))
+
+    p_node2 = path_of_node(btree, node2)
+    print('path of Node(%d) is %s' % (node2.data,
+                                     str([k.data for k in p_node2])))
+
+    print('lca is:', first_diff_element(p_node1, p_node2).data)
