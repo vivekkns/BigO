@@ -493,8 +493,8 @@ def path_of_node(root, node, path=None, pathlen=0):
     pathlen += 1
     if root is node:
         return path[:pathlen]
-    lp = path_of_node(root.left, node, path, pathlen)
 
+    lp = path_of_node(root.left, node, path, pathlen)
     if lp is not None:
         return lp
 
@@ -511,6 +511,32 @@ def first_diff_element(L1, L2):
         k2 += 1
 
     return L1[k1-1]
+
+#
+# Building tree from traversal
+#
+# Tree can be uniquely reconstructed using
+#       in-order + {pre, post, level}
+#
+# Without in-order even if all pre, post, level traversal are given,
+# it is not possible to reconstructed
+#
+
+preindex = 0
+
+
+def build_tree(in_order, pre_order, in_start, in_end):
+    global preindex
+    if in_end < in_start:
+        return
+    data = pre_order[preindex]
+    preindex += 1
+    n = Node(data)
+    i = in_order.index(data)
+    print(i, n.data)
+    n.left = build_tree(in_order, pre_order, in_start, i-1)
+    n.right = build_tree(in_order, pre_order, i+1, in_end)
+    return n
 
 if __name__ == '__main__':
     print_tree()
@@ -610,3 +636,11 @@ if __name__ == '__main__':
                                      str([k.data for k in p_node2])))
 
     print('lca is:', first_diff_element(p_node1, p_node2).data)
+
+    bu_tree = build_tree([19, -6, 2, 0, -60, 5, 10, 11, -3, 15],
+                         [10, 19, -6, 2, 0, -60, 5, 11, -3, 15], 0, 9)
+
+    print('\n In order = ', end='')
+    in_order(bu_tree)
+    print('\n Pre order = ', end='')
+    pre_order(bu_tree)
