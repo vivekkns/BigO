@@ -47,6 +47,28 @@ def get_bintree():
 
     return root
 
+#
+# The following function will return
+# the root of copied tree
+#
+# We can't pass reference in python
+# https://stackoverflow.com/questions/986006/how-do-i-pass-a-variable-by-reference
+#
+
+
+def copy_tree(root):
+    if root is None:
+        return None
+
+    temp = Node(root.data)
+
+    if root.left is not None:
+        temp.left = copy_tree(root.left)
+    if root.right is not None:
+        temp.right = copy_tree(root.right)
+
+    return temp
+
 
 def in_order(root):
     if root is None:
@@ -290,6 +312,22 @@ def are_structurally_identical(root1, root2):
                are_structurally_identical(root1.right, root2.right)
 
 #
+# check mirror of each there
+#
+
+
+def are_mirrors(root1, root2):
+    if root1 is None and root2 is None:
+        return True
+
+    if root1 is None or root2 is None:
+        return False
+
+    return root1.data == root2.data and \
+        are_mirrors(root1.left, root2.right) and \
+        are_mirrors(root1.right, root2.left)
+
+#
 #   https://www.geeksforgeeks.org/diameter-of-a-binary-tree/
 #
 
@@ -401,6 +439,21 @@ def sum_all_elements(root):
                sum_all_elements(root.left) + \
                sum_all_elements(root.right)
 
+
+#
+# converting a tree to its mirror
+#
+
+def mirror(root):
+    if root is None:
+        return
+    mirror(root.right)
+    mirror(root.left)
+    temp = root.right
+    root.right = root.left
+    root.left = temp
+
+
 if __name__ == '__main__':
     print_tree()
     btree = get_bintree()
@@ -455,4 +508,28 @@ if __name__ == '__main__':
 
     print('sum_all_elements = ', sum_all_elements(btree))
 
+    print('\n\nmirroring tree...')
+    print('Before mirror, level order= ')
+    print_level_order(btree)
+    mirror(btree)
+    print('\nAfter mirror, level order= ')
+    print_level_order(btree)
 
+    print('\n\ncopying tree..')
+    print('Original tree''s level order= ')
+    print_level_order(btree)
+
+    n_btree = copy_tree(btree)
+
+    print('\nCopied tree''s level order= ')
+    print_level_order(n_btree)
+
+    print('\nare_structurally_identical ?',
+          are_structurally_identical(btree, n_btree))
+
+    print('mirroring...')
+    mirror(n_btree)
+    print('are_structurally_identical ?',
+          are_structurally_identical(btree, n_btree))
+
+    print('\nAre mirrors?', are_mirrors(btree, n_btree))
