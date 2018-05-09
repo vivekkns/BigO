@@ -533,7 +533,6 @@ def build_tree(in_order, pre_order, in_start, in_end):
     preindex += 1
     n = Node(data)
     i = in_order.index(data)
-    print(i, n.data)
     n.left = build_tree(in_order, pre_order, in_start, i-1)
     n.right = build_tree(in_order, pre_order, i+1, in_end)
     return n
