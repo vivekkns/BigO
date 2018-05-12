@@ -70,7 +70,45 @@ def findMissDup_bit(A):
     return x ^ d, d
 
 
+def find_set_bit_pos(n):
+    """
+    Find position of the only set bit
+    """
+    c = 0
+    while n:
+        c += 1
+        n >>= 1
+    return c
+
+
+def count_set_bits(n):
+    """
+    count of set bits
+    """
+    c = 0
+    while n:
+        c += n & 1
+        n >>= 1
+    return c
+
+
+def count_all_bits_n_1(n):
+    total_bits = 0
+    for num in range(1, n+1):
+        total_bits += count_set_bits(num)
+    return total_bits
+
+
+def count_all_bits_n_2(n):
+    pass
+
+
 def main():
+
+    print('find_set_bit(16) = ', find_set_bit_pos(16))
+    print('count_set_bits(5) = ', count_set_bits(5))
+    print('count_all_bits_n_1(5) = ', count_all_bits_n_1(5))
+
     A = [1, 2, 3, 6, 5, 2]
     print('findMissDup of     ', A, ' = ', findMissDup(A))
     print('findMissDup_bit of ', A, ' = ', findMissDup_bit(A))
