@@ -4,7 +4,7 @@ from stack.python.stack import Stack_List as Stack
 from queue.python.queue import Queue_list as Queue
 
 
-class Node:
+class nodeT:
     def __init__(self, data):
         self.left = None
         self.right = None
@@ -30,20 +30,20 @@ def print_tree():
     print(btree)
 
 
-def get_bintree():
-    root = Node(10)
-    root.left = Node(0)
-    root.right = Node(-3)
+def get_bintree(nodeT=nodeT):
+    root = nodeT(10)
+    root.left = nodeT(0)
+    root.right = nodeT(-3)
 
-    root.left.left = Node(2)
-    root.left.right = Node(5)
-    root.right.left = Node(11)
-    root.right.right = Node(15)
+    root.left.left = nodeT(2)
+    root.left.right = nodeT(5)
+    root.right.left = nodeT(11)
+    root.right.right = nodeT(15)
 
-    root.left.left.left = Node(-6)
-    root.left.right.left = Node(-60)
+    root.left.left.left = nodeT(-6)
+    root.left.right.left = nodeT(-60)
 
-    root.left.left.left.left = Node(19)
+    root.left.left.left.left = nodeT(19)
 
     return root
 
@@ -60,7 +60,7 @@ def copy_tree(root):
     if root is None:
         return None
 
-    temp = Node(root.data)
+    temp = nodeT(root.data)
 
     if root.left is not None:
         temp.left = copy_tree(root.left)
@@ -531,7 +531,7 @@ def build_tree(in_order, pre_order, in_start, in_end):
         return
     data = pre_order[preindex]
     preindex += 1
-    n = Node(data)
+    n = nodeT(data)
     i = in_order.index(data)
     n.left = build_tree(in_order, pre_order, in_start, i-1)
     n.right = build_tree(in_order, pre_order, i+1, in_end)
