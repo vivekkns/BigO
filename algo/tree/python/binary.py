@@ -37,7 +37,7 @@ def get_bintree(nodeT=nodeT):
 
     root.left.left = nodeT(2)
     root.left.right = nodeT(5)
-    root.right.left = nodeT(11)
+    # root.right.left = nodeT(11)
     root.right.right = nodeT(15)
 
     root.left.left.left = nodeT(-6)
