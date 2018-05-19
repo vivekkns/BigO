@@ -9,20 +9,28 @@ from collections import defaultdict
 # [ [], [], [], [] ... []]
 #
 
+#
+#
+#
+#
+#
+
 
 class Graph:
     def __init__(self):
         self.graph = defaultdict(list)
 
-    def addEdge(self, u, v):
+    def addUEdge(self, u, v):
         self.graph[u].append(v)
         self.graph[v].append(u)
 
+    def addEdge(self, u, v):
+        self.graph[u].append(v)
+
     def DFS(self, v, visited=None):
         if visited is None:
-            visited = dict()
-            for i in self.graph:
-                visited[i] = False
+            visited = [False] * len(self.graph)
+            
         print('visited=', v)
         visited[v] = True
         for e in self.graph[v]:
@@ -31,16 +39,16 @@ class Graph:
 
 if __name__ == '__main__':
     g = Graph()
-    g.addEdge('A', 'B')
-    g.addEdge('B', 'H')
-    g.addEdge('B', 'C')
-    g.addEdge('C', 'E')
-    g.addEdge('C', 'D')
-    g.addEdge('E', 'F')
-    g.addEdge('E', 'G')
-    g.addEdge('E', 'H')
+    g.addUEdge(0, 1)
+    g.addUEdge(1, 7)
+    g.addUEdge(1, 2)
+    g.addUEdge(2, 4)
+    g.addUEdge(2, 3)
+    g.addUEdge(4, 5)
+    g.addUEdge(4, 6)
+    g.addUEdge(4, 7)
 
     print(g.graph)
 
-    g.DFS('A')
+    g.DFS(0)
 
