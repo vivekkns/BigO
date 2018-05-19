@@ -46,6 +46,42 @@ def rabin_karp(T, P):
     return False
 
 
+def prefix_table(P):
+    m = len(P)
+    j = 0
+    i = 1
+    PT = [0] * m
+
+    while i < m:
+        if P[i] == P[j]:
+            PT[i] = j + 1
+            j += 1
+            i += 1
+        elif j > 0:
+            j = PT[j-1]
+        else:
+            PT[i] = 0
+            i += 1
+    return PT
+
+
+def kmp(T, P):
+    PT = prefix_table(P)
+    n = len(T)
+    m = len(P)
+    i = j = 0
+    while i < n:
+        if T[i] == P[j]:
+            if j == m-1:
+                return i-j
+            i += 1
+            j += 1
+        elif j > 0:
+            j = PT[j-1]
+        else:
+            i += 1
+    return False
+
 if __name__ == '__main__':
     print(brute_force('ABCDFGG', 'CDF'))
     print(brute_force('ABCDFGG', 'CDDF'))
@@ -53,3 +89,6 @@ if __name__ == '__main__':
     print(rabin_karp('ABCDFGG', 'CDF'))
     print(rabin_karp('ABCDFGG', 'CDDF'))
     print(rabin_karp('CDDF', 'CDDF'))
+
+    print(kmp('aabaabaaba', 'aabaabaaa'))
+    print(kmp('abxabcabcaby', 'abcaby'))
