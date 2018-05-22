@@ -132,20 +132,19 @@ class Graph:
 
     def bellman_ford(self, s):
         num_v = len(self.adj)
-        dist = [INF] * num_v
+
         parent = [None] * num_v
-
+        dist = [INF] * num_v
         dist[s] = 0
-        q = [s]
-        while len(q) > 0:
-            v = q.pop(0)
-            for u, u_w in self.adj[v]:
-                new_d = dist[v] + u_w
-                if new_d < dist[u]:
-                    dist[u] = new_d
-                    parent[u] = v
 
-                q.append(u)
+        # Relax all edges (|V| - 1) times
+        for _ in range(num_v - 1):
+            for v in range(num_v):
+                for u, u_w in self.adj[v]:
+                    new_d = dist[v] + u_w
+                    if new_d < dist[u]:
+                        dist[u] = new_d
+                        parent[u] = v
 
         # detecting -ve cycle in the graph
         is_valid = True
