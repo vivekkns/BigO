@@ -93,8 +93,6 @@ class Graph:
 
     def ssp_unweighted(self, s):
         num_v = len(self.graph)
-        # first column is for storing distance
-        # second column is for storing pre
         dist = [None] * num_v
         parent = [None] * num_v
         dist[s] = 0
@@ -111,8 +109,6 @@ class Graph:
 
     def dijkstra(self, s):
         num_v = len(self.graph)
-        # first column is for storing distance
-        # second column is for storing pre
         dist = [INF] * num_v
         parent = [None] * num_v
         dist[s] = 0
