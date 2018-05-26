@@ -44,7 +44,7 @@ class Graph:
         q = list()
         q.append(v)
         while len(q) > 0:
-            t = q.pop()
+            t = q.pop(0)
             if not visited[t]:
                 print('visited=', t)
                 visited[t] = True
