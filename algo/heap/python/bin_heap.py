@@ -37,7 +37,7 @@ class MinHeap:
         #
         while i > 0 and self.A[i/2] > self.A[i]:
             swap(self.A, i/2, i)
-            i = i/2
+            i = (i-1)/2
 
     def extract_min(self):
         if self.heap_size <= 0:

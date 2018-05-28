@@ -34,8 +34,8 @@ class PriorityMapQueue:
 
     def _decrease(self, i):
         while self.A[i/2][1] > self.A[i][1]:
-            self._swap(i, i/2)
-            i = i/2
+            self._swap(i, (i-1)/2)
+            i = (i-1)/2
 
     def decrease_key(self, key, newpri):
         i = self.map[key]
