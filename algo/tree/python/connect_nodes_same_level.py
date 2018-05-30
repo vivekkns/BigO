@@ -26,6 +26,27 @@ class Node:
         self.data = data
 
 
+def con_same_level_bfs(root):
+    q = list()
+    q.append(root)
+    q.append(None)
+
+    while len(q) > 0:
+        t1 = q.pop(0)
+        while t1 is not None:
+            if t1.left is not None:
+                q.append(t1.left)
+            if t1.right is not None:
+                q.append(t1.right)
+
+            t2 = q.pop(0)
+            t1.Next = t2
+            t1 = t2
+
+        if len(q):
+            q.append(None)
+
+
 def con_same_level(root):
     if root is None:
         return
@@ -47,7 +68,6 @@ def get_first_node(node):
     # keep traversing the list till we
     # find a valid node
     while node is not None:
-        print(node.data)
         if node.left is not None:
             return node.left
         if node.right is not None:
@@ -96,4 +116,10 @@ if __name__ == '__main__':
     tree = binary.get_bintree(Node)
     print('\ncon_same_level_incomplete')
     con_same_level_incomplete(tree)
+    print_level_next_pointer(tree)
+
+
+    tree = binary.get_bintree(Node)
+    print('\ncon_same_level_bfs')
+    con_same_level_bfs(tree)
     print_level_next_pointer(tree)
