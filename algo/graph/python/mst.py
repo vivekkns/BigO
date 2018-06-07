@@ -83,7 +83,7 @@ class Graph:
     def kruskal(self):
         allEdges = []
         for v in self.adj:
-            for u, u_w  in self.adj[v]:
+            for u, u_w in self.adj[v]:
                 allEdges.append((v, u, u_w))
         allEdges.sort(key=lambda e: e[2])
 

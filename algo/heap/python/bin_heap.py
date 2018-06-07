@@ -6,7 +6,7 @@ import random
 
 # represented using array
 # A[0] -> root
-# A[i/2] -> parent node of i(th) node
+# A[(i-1)/2] -> parent node of i(th) node
 # A[2*i + 1] -> left child
 # A[2*i + 2] -> right child
 
@@ -35,8 +35,8 @@ class MinHeap:
         # Since we are inserting element in the end
         # we only have to check parents
         #
-        while i > 0 and self.A[i/2] > self.A[i]:
-            swap(self.A, i/2, i)
+        while i > 0 and self.A[(i-1)/2] > self.A[i]:
+            swap(self.A, (i-1)/2, i)
             i = (i-1)/2
 
     def extract_min(self):
