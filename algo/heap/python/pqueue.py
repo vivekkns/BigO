@@ -33,7 +33,7 @@ class PriorityMapQueue:
         self.A[i], self.A[j] = self.A[j], self.A[i]
 
     def _decrease(self, i):
-        while self.A[(i-1)/2][1] > self.A[i][1]:
+        while i > 0 and self.A[(i-1)/2][1] > self.A[i][1]:
             self._swap(i, (i-1)/2)
             i = (i-1)/2
 
