@@ -22,7 +22,7 @@ def binary(A, n):
 
 
 def k_string(A, n, k):
-    if n<1:
+    if n < 1:
         print(A)
     else:
         for i in range(k):
