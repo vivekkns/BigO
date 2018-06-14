@@ -71,22 +71,20 @@ def max_subarray1(A):
 
 
 def max_subarray(A):
-    max_ending_here = A[:]
-    max_so_far = A[:]
+    max_ending_here = max_so_far = A[0]
     i1 = i2 = 0
     for i, a in enumerate(A[1:], 1):
-        max_so_far[i] = max_so_far[i-1]
-        if (max_ending_here[i-1] + a) >= a:
-            max_ending_here[i] = max_ending_here[i-1] + a
-            if max_ending_here[i] > max_so_far[i-1]:
-                max_so_far[i] = max_ending_here[i]
+        if (max_ending_here + a) >= a:
+            max_ending_here = max_ending_here + a
+            if max_ending_here > max_so_far:
+                max_so_far = max_ending_here
                 i2 = i
         else:
-            max_ending_here[i] = a
-            if max_ending_here[i] >= max_so_far[i-1]:
-                max_so_far[i] = max_ending_here[i]
+            max_ending_here = a
+            if max_ending_here >= max_so_far:
+                max_so_far = max_ending_here
                 i1 = i2 = i
-    return max_so_far[len(A)-1], A[i1:i2+1]
+    return max_so_far, A[i1:i2+1]
 
 
 if __name__ == '__main__':
