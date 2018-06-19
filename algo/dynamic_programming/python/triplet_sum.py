@@ -10,14 +10,11 @@ def three_sum_n3(A):
                     print(A[i], A[j], A[k])
 
 
-def three_sum_n2_hash(B):
-    A = B[:]
-    A.sort()
+def three_sum_n2_hash(A):
     n = len(A)
-
-    for i in range(n-2):
+    for i in range(n-1):
         h = dict()
-        for j in range(i+1, n-1):
+        for j in range(i+1, n):
             if -(A[i]+A[j]) in h:
                 print(A[i], A[j], -(A[i]+A[j]))
             else:
@@ -66,7 +63,7 @@ def three_sum_n2(B):
                 break
 
 if __name__ == '__main__':
-    A = [-1, 0, -1, 1, 2, 4]
+    A = [-1, 0, -1, 1, 2, 4, -4]
     print('n3 algo')
     three_sum_n3(A)
 
