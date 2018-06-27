@@ -30,9 +30,23 @@
 # - isfull
 
 
+class ListQueue(list):
+    def isempty(self):
+        return len(self) == 0
+
+    def enqueue(self, data):
+        self.append(data)
+
+    def dequeue(self):
+        return self.pop(0)
+
+    def delete(self):
+        del self
+
 #
 # queue using fixed size array
 #
+
 
 class Queue:
     def __init__(self, size):
@@ -118,7 +132,7 @@ class Queue_list:
         temp = self.front
 
         while temp is not None:
-            print temp.data
+            print(temp.data)
             temp = temp.Next
 
 if __name__ == '__main__':
@@ -129,11 +143,19 @@ if __name__ == '__main__':
     q.enqueue(20)
     q.enqueue(-2)
     q()
-    print q.dequeue(), q.dequeue(), q.dequeue()
+    print(q.dequeue(), q.dequeue(), q.dequeue())
 
     q = Queue_list()
     q.enqueue(2)
     q.enqueue(20)
     q.enqueue(-2)
     q()
-    print q.dequeue(), q.dequeue(), q.dequeue()
+    print(q.dequeue(), q.dequeue(), q.dequeue())
+
+    print('Queue using python list')
+    q = ListQueue()
+    q.enqueue(1)
+    q.enqueue(4)
+
+    print(q.dequeue(), q.dequeue())
+    q.delete()
