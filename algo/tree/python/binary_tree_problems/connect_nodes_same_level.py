@@ -1,5 +1,6 @@
 from __future__ import print_function
-import binary
+import bin_tree_utils as utils
+from traversals import print_level_order
 
 # Input Tree
 #        A
@@ -107,19 +108,18 @@ def print_level_next_pointer(root):
 
 
 if __name__ == '__main__':
-    tree = binary.get_bintree(Node)
-    binary.print_level_order(tree)
+    tree = utils.get_bintree(Node)
+    print_level_order(tree)
     con_same_level(tree)
     print('\nprint_level_next_pointer')
     print_level_next_pointer(tree)
 
-    tree = binary.get_bintree(Node)
+    tree = utils.get_bintree(Node)
     print('\ncon_same_level_incomplete')
     con_same_level_incomplete(tree)
     print_level_next_pointer(tree)
 
-
-    tree = binary.get_bintree(Node)
+    tree = utils.get_bintree(Node)
     print('\ncon_same_level_bfs')
     con_same_level_bfs(tree)
     print_level_next_pointer(tree)
