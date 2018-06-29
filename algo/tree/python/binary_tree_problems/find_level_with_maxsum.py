@@ -10,15 +10,15 @@ def find_level_with_maxsum(root):
     if root is None:
         return None
 
-    max_sum = -100000
-    cur_sum = 0
-
-    level = 0
-    max_level = 0
-
     Q = Queue()
     Q.enqueue(root)
     Q.enqueue(None)
+
+    max_sum = root.data
+    max_level = 0
+
+    cur_sum = 0
+    level = 0
 
     while not Q.isempty():
         temp = Q.dequeue()
@@ -44,4 +44,4 @@ def find_level_with_maxsum(root):
 if __name__ == '__main__':
     print_tree()
     btree = get_bintree()
-    print(' \n find_level_with_maxsum = %s' % str(find_level_with_maxsum(btree)))
+    print('find_level_with_maxsum = %s' % str(find_level_with_maxsum(btree)))
