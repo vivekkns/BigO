@@ -5,6 +5,9 @@ class Queue(list):
     def dequeue(self):
         return self.pop(0)
 
+    def front(self):
+        return self[0]
+
     def isempty(self):
         return len(self) == 0
 

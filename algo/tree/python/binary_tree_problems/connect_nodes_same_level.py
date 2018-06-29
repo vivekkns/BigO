@@ -1,5 +1,5 @@
 from __future__ import print_function
-import bin_tree_utils as utils
+from bin_tree_utils import Queue, get_bintree, print_tree
 from traversals import print_level_order
 
 # Input Tree
@@ -28,41 +28,46 @@ class Node:
 
 
 def con_same_level_bfs(root):
-    q = list()
-    q.append(root)
-    q.append(None)
+    q = Queue()
+    q.enqueue(root)
+    q.enqueue(None)
 
-    while len(q) > 0:
-        t1 = q.pop(0)
-        while t1 is not None:
-            if t1.left is not None:
-                q.append(t1.left)
-            if t1.right is not None:
-                q.append(t1.right)
+    t2 = None
+    while not q.isempty():
+        t1 = q.dequeue()
 
-            t2 = q.pop(0)
-            t1.Next = t2
-            t1 = t2
-
-        if len(q):
-            q.append(None)
-
-
-def con_same_level(root):
-    if root is None:
-        return
-
-    if root.left is not None:
-        root.left.Next = root.right
-
-    if root.right is not None:
-        if root.Next is not None:
-            root.right.Next = root.Next.left
+        if t1 is None:
+            if not q.isempty():
+                q.enqueue(None)
         else:
-            root.right.Next = None
+            if t1.left is not None:
+                q.enqueue(t1.left)
+            if t1.right is not None:
+                q.enqueue(t1.right)
 
-    con_same_level(root.left)
-    con_same_level(root.right)
+        if t2 is not None:
+            t2.Next = t1
+        t2 = t1
+
+
+# Single while loop
+def con_same_level_bfs_1(root):
+    q = Queue()
+    q.enqueue(root)
+    q.enqueue(None)
+
+    while not q.isempty():
+        t1 = q.dequeue()
+
+        if t1 is None:
+            if not q.isempty():
+                q.enqueue(None)
+        else:
+            if t1.left is not None:
+                q.enqueue(t1.left)
+            if t1.right is not None:
+                q.enqueue(t1.right)
+            t1.Next = q.front()
 
 
 def get_first_node(node):
@@ -108,18 +113,19 @@ def print_level_next_pointer(root):
 
 
 if __name__ == '__main__':
-    tree = utils.get_bintree(Node)
-    print_level_order(tree)
-    con_same_level(tree)
-    print('\nprint_level_next_pointer')
-    print_level_next_pointer(tree)
+    print_tree()
 
-    tree = utils.get_bintree(Node)
+    tree = get_bintree(Node)
     print('\ncon_same_level_incomplete')
     con_same_level_incomplete(tree)
     print_level_next_pointer(tree)
 
-    tree = utils.get_bintree(Node)
+    tree = get_bintree(Node)
     print('\ncon_same_level_bfs')
     con_same_level_bfs(tree)
+    print_level_next_pointer(tree)
+
+    tree = get_bintree(Node)
+    print('\ncon_same_level_bfs_1')
+    con_same_level_bfs_1(tree)
     print_level_next_pointer(tree)
