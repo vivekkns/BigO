@@ -1,5 +1,5 @@
 from __future__ import print_function
-from maxheap import maxheap
+from maxheap import MaxHeap
 
 # Tuples and lists are compared lexicographically using comparison of corresponding elements.
 # This means that to compare equal, each element must compare equal and
@@ -21,11 +21,11 @@ def k_closest(P, k):
     n = len(P)
     d = get_dist(P)
 
-    h = maxheap()
+    h = MaxHeap()
     h.build(d, k)
 
     for i in range(k, n):
-        if h.getMax() > d[i]:
+        if h.get_max() > d[i]:
             h.decrease_max(d[i])
 
     return [p[1] for p in h.A[:k]]
@@ -39,11 +39,11 @@ def k_closest_space_efficient(P, k):
     for i in range(k):
         d.append((dist2(P[i]), P[i]))
 
-    h = maxheap()
+    h = MaxHeap()
     h.build(d, k)
     for i in range(k, n):
         dp = (dist2(P[i]), P[i])
-        if h.getMax() > dp:
+        if h.get_max() > dp:
             h.decrease_max(dp)
 
     return [p[1] for p in h]

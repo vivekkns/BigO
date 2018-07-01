@@ -1,4 +1,4 @@
-class maxheap:
+class MaxHeap:
     def __init__(self, msize=0):
         self.msize = msize
         self.A = [0] * msize
@@ -34,7 +34,7 @@ class maxheap:
             self._swap(i, m)
             self.sink(m)
 
-    def getMax(self):
+    def get_max(self):
         return self.A[0]
 
     def decrease_max(self, data):
