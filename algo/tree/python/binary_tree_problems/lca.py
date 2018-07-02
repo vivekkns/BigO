@@ -18,9 +18,9 @@ def lca(root, node1, node2):
 
     # if both left and right are not None means,
     # node1 is present in one subtree node2 in other subtree
-    if left is not None and right is not None:
+    if left and right:
         return root
-    elif left is not None:
+    elif left:
         return left
     else:
         return right
