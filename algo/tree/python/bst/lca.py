@@ -2,7 +2,7 @@ from bst_utils import get_bst, print_bst
 
 #
 # Least common ancestor
-#
+# or finding the shortest path b/w two nodes in BST
 
 
 def lca(root, node1, node2):
