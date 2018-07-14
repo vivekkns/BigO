@@ -20,6 +20,8 @@ def bst_delete(root, data):
             root = root.left
         elif root.right:
             root = root.right
+        else:
+            root = None
     return root
 
 
@@ -29,4 +31,8 @@ if __name__ == '__main__':
     traversals.print_in_order(bst)
     print('\ndeleting node 10')
     bst = bst_delete(bst, 10)
+    traversals.print_in_order(bst)
+
+    print('\ndeleting node 8')
+    bst = bst_delete(bst, 8)
     traversals.print_in_order(bst)
