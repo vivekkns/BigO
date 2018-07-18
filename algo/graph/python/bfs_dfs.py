@@ -14,6 +14,23 @@ def DFS(g, v):
     DFS_util(g, v, visited)
 
 
+def hasPath_util(g, s, d, visited, parent):
+    visited[s] = True
+    if s == d:
+        return
+    for v in g.adj[s]:
+        if not visited[v]:
+            parent[v] = s
+            hasPath_util(g, v, d, visited, parent)
+
+
+def hasPath(g, s, d):
+    visited = [False] * g.V
+    parent = [None] * g.V
+    hasPath_util(g, s, d, visited, parent)
+    return visited[d]
+
+
 def BFS(g, v):
     visited = [False] * g.V
     q = Queue()
@@ -45,3 +62,6 @@ if __name__ == '__main__':
 
     print('----- BFS -----')
     BFS(g, 0)
+
+    print('---- hadPath ----')
+    print(hasPath(g, 0, 7))
