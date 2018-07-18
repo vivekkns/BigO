@@ -27,6 +27,19 @@ def quicksort(A, left, right, par_func):
     quicksort(A, pi+1, right, par_func)
 
 
+def k_th_small(A, left, right, k, par_func):
+    if right < left:
+        return
+
+    pi = par_func(A, left, right)
+    if pi == k-1:
+        return A[pi]
+    elif k-1 < pi:
+        return k_th_small(A, left, pi-1, k, par_func)
+    else:
+        return k_th_small(A, pi+1, right, k, par_func)
+
+
 def run_algo(A):
     B = A[:]
     startTime = time.time()
@@ -56,5 +69,10 @@ def example_sorted_aary():
     run_algo(A)
 
 if __name__ == '__main__':
-    example_random_array()
-    example_sorted_aary()
+    A = random.sample(xrange(1, 15), 10)
+    print(A)
+    print(k_th_small(A, 0, len(A)-1, 9, partition))
+    print sorted(A)
+    # example_random_array()
+    # example_sorted_aary()
+
