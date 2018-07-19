@@ -1,23 +1,3 @@
-
-# ary = [-INF] * (N+1)
-#
-#
-# def rod_cut(L, l1, P, N):
-#     price = 0
-#
-# for l in range(l1, len(L)):
-#     if N-L[l] >= 0:
-# if ary[N-L[l]] > -INF:
-#     p1 = ary[N-L[l]]
-# else:
-#     p1 = rod_cut(L, 0, P, N-L[l])
-#
-# price = max(P[l] + p1, rod_cut(L, l, P, N))
-#
-# ary[N] = price
-# return price
-
-
 def cutRod_rec(L, P, N):
     p = 0
     for l in range(len(L)):
