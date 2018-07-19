@@ -8,18 +8,23 @@ class MaxHeap:
     def _swap(self, i, j):
         self.A[i], self.A[j] = self.A[j], self.A[i]
 
+    def insert(self, data):
+        self.A[self.size] = data
+        self.size += 1
+        self._swim(self.size - 1)
+
     def build(self, A, size):
         self.A = A
         self.size = size
         for i in range(self.size/2, -1, -1):
-            self.sink(i)
+            self._sink(i)
 
-    def swim(self, i):
+    def _swim(self, i):
         while i > 0 and self.A[i] > self.A[(i-1)/2]:
             self._swap(i, (i-1)/2)
             i = (i-1)/2
 
-    def sink(self, i):
+    def _sink(self, i):
         m = i
 
         l = 2*i + 1
@@ -32,14 +37,14 @@ class MaxHeap:
 
         if m != i:
             self._swap(i, m)
-            self.sink(m)
+            self._sink(m)
 
     def get_max(self):
         return self.A[0]
 
     def decrease_max(self, data):
         self.A[0] = data
-        self.sink(0)
+        self._sink(0)
 
     def __iter__(self):
         for a in self.A:
