@@ -4,6 +4,7 @@ Mutexes allow you to avoid data races, unfortunately while they allow you to pro
 https://www.cs.nmsu.edu/~jcook/Tools/pthreads/pthread_cond.html
 https://gist.github.com/rtv/4989304#file-cond-c
 
+## https://www.justsoftwaresolutions.co.uk/threading/locks-mutexes-semaphores.html
 
 ## Readers–writer lock
 https://en.wikipedia.org/wiki/Readers%E2%80%93writer_lock
